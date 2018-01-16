@@ -1,10 +1,10 @@
 # PythonTraining
 
-## Install Python Environment
+## Install Django Python Environment
 
 ### Windows
 
-Note: For lines with multiple commands the first one is perffered, e.g. the `py -<version>`.  The other will only work if the python version you want to use is linked to the `python` command.
+**Note:** For lines with multiple commands the first one is perffered, e.g. the `py -<version>`.  The other will only work if the python version you want to use is linked to the `python` command.
 
 1. Go-to the python download page and download python 3.6
     1. https://www.python.org/downloads/
@@ -39,3 +39,23 @@ Note: For lines with multiple commands the first one is perffered, e.g. the `py 
 11. Confirm that Django is correctly installed by running the following command (should return `2.0.1` or something similar)
     1. `python -m django --version`
 12. To exit from the virtual environment execute `deactivate` to re-enter the environment go to the folder that you originally created it in and execute step 8.
+
+### Linux/Mac OS:
+
+#### Python/Pip Install Mac OS
+
+1. Go-to the python download page and download python 3.6
+    1. https://www.python.org/downloads/
+2. Run the installation tool and make sure that the pip box is checked so that pip is installed as well.  Also make sure to have it add python to your path.
+3. Confirm that the python version by running one of the following commands in a terminal window, which can be opened via spotlight (the output should be `Python 3.x.x`)
+    1. `python3 –version`
+
+#### Python/Pip install Linux
+
+1. Install *python 3.X* and it's corresponding *pip* using your distro’s specific package manager, details on the different package managers and package names per Linux distribution can be found here https://packaging.python.org/guides/installing-using-linux-tools/
+    1. Debian/Ubuntu:  `sudo apt-get install python3 python3-pip`
+    2. Fedora 21: `sudo yum install python3 python3-wheel`
+    3. Fedora 22: `sudo dnf install python3 python3-wheel`
+    4. Arch: `sudo pacman -S python python-pip`
+2. Confirm that the python version by running one of the following commands in a terminal window (the output should be `Python 3.x.x`)
+    1. `python3 --version`
