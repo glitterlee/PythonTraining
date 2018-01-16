@@ -4,9 +4,9 @@
 
 Jump To:
 * [Windows](#windows)  
-* [Linux/Mac OS](#linux)
+* [Linux/Mac OS](#linuxmac-os)
 
-### <a name="windows"></a>Windows
+### Windows
 
 **Note:** For lines with multiple commands the first one is perffered, e.g. the `py -<version>`.  The other will only work if the python version you want to use is linked to the `python` command.
 
@@ -44,7 +44,7 @@ Jump To:
     1. `python -m django --version`
 12. To exit from the virtual environment execute `deactivate` to re-enter the environment go to the folder that you originally created it in and execute step 8.
 
-### <a name="linux"></a>Linux/Mac OS:
+### Linux/Mac OS:
 
 #### Python/Pip Install Mac OS
 
