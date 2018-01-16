@@ -63,3 +63,20 @@ Jump To:
     4. Arch: `sudo pacman -S python python-pip`
 2. Confirm that the python version by running one of the following commands in a terminal window (the output should be `Python 3.x.x`)
     1. `python3 --version`
+
+#### Virtualenv + Django Setup (Linux/Mac OS):
+
+1. Change directories to where you want to be developing your application
+2. Create the virtual environment using the following command
+    1. `python3 -m virtualenv <env_name>`
+3. Activate the virtual environment in your current shell from the directory you created the environment in (after activating `(env)` should appear in front of your terminal prompt)
+    1. `source ./<env_name>/bin/activate`
+4. Confirm that python and pip are correctly linked
+    1. Python
+        1. Run `python --version`
+        2. Should return `Python 3.6.x`
+    2. Pip
+        1. Run `pip --version`
+        2. Should return `pip 9.0.1 from <path> (python 3.6)`
+5. Install Django in the virtual env with the following command
+    1. `pip install django`
