@@ -24,10 +24,46 @@
         <h5>There are no messages.</h5>
     {% endif %}
 
-    <div class="row form-group">
+    <form class="row form-group" id="message-post" action="/">
         <div class="input-group">
             <textarea class="form-control" rows=1 id="message"></textarea>
             <input type="button" value="Post">
         </div>
-    </div>
+    </form>
+
+    <script>
+        $('#message').keyup(function (event) {
+            if (event.keyCode == 13 && event.shiftKey) {
+                var content = this.value;
+                var caret = getCaret(this);
+                this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
+                event.stopPropagation();
+                
+            }else if(event.keyCode == 13)
+            {
+                $('#message-post').submit();
+            }
+        });
+
+        function getCaret(el) { 
+            if (el.selectionStart) { 
+                return el.selectionStart; 
+            } else if (document.selection) { 
+                el.focus(); 
+
+                var r = document.selection.createRange(); 
+                if (r == null) { 
+                return 0; 
+                } 
+
+                var re = el.createTextRange(), 
+                    rc = re.duplicate();
+                re.moveToBookmark(r.getBookmark()); 
+                rc.setEndPoint('EndToStart', re); 
+
+                return rc.text.length; 
+            }  
+            return 0; 
+        }
+    </script>
 {% endblock %}
