@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <td><strong>Date</strong></td>
+            <td><strong>Message</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in messages %}
+        <tr>
+            <td>{{ m.pub_date }}</td>
+            <td>{{ m.text }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
