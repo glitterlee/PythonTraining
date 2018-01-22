@@ -1,16 +1,33 @@
-<table>
-    <thead>
-        <tr>
-            <td><strong>Date</strong></td>
-            <td><strong>Message</strong></td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for m in messages %}
-        <tr>
-            <td>{{ m.pub_date }}</td>
-            <td>{{ m.text }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if messages|length > 0 %}
+    <div class="row">
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th class="w-25">Date</th>
+                        <th class="w-75">Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in messages %}
+                        <tr>
+                            <td>{{ m.pub_date }}</td>
+                            <td>{{ m.text }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    {% else %}
+        <h5>There are no messages.</h5>
+    {% endif %}
+
+    <div class="row form-group">
+        <div class="input-group">
+            <textarea class="form-control" rows=1 id="message"></textarea>
+            <input type="button" value="Post">
+        </div>
+    </div>
+{% endblock %}
