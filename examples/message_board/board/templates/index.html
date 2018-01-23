@@ -16,7 +16,7 @@
                         <th class="w-25">Date</th>
                         <th class="w-75">
                             Message
-                            <a class="button float-right" href="/clear_all">Clear All</a>
+                            <a class="button float-right" href="{% url 'clear_all' %}">Clear All</a>
                         </th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
         </div>
     {% endif %}
 
-    <form class="form-group" id="message-post" method="POST" action="/">
+    <form class="form-group" id="message-post" method="POST" action="{% url 'index' %}">
 
         {% csrf_token %}
 
