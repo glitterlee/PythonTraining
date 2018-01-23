@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.urls import reverse
 
 from .models import Message
 from .forms import NewMessageForm
@@ -12,7 +13,7 @@ def index(request):
         if msg_form.is_valid():
             msg = msg_form.save()
             msg_form = NewMessageForm()
-            
+
     else:
         msg_form = NewMessageForm()
     
@@ -24,4 +25,4 @@ def index(request):
 
 def clear_all(request):
     Message.objects.all().delete()
-    return HttpResponseRedirect('/')
+    return redirect(reverse('index'))
