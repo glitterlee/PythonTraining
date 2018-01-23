@@ -27,11 +27,12 @@
     <form class="row form-group" id="message-post" action="/">
         <div class="input-group">
             <textarea class="form-control" rows=1 id="message" placeholder="Type your message here."></textarea>
-            <input type="button" value="Post">
+            <input type="submit" value="Post">
         </div>
     </form>
 
     <script>
+
         $('#message').autoResize();
         $('#message').keyup(function (event) {
             if (event.keyCode == 13 && event.shiftKey) {
