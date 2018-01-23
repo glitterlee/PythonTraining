@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <style>
+        #errors {
+            list-style: none;
+            color: red;
+        }
+    </style>
+
     {% if messages|length > 0 %}
     <div class="row">
         <table class="table">
                 <thead>
                     <tr>
                         <th class="w-25">Date</th>
-                        <th class="w-75">Message</th>
+                        <th class="w-75">
+                            Message
+                            <a class="button float-right" href="/clear_all">Clear All</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,32 +31,51 @@
             </table>
     </div>
     {% else %}
-        <h5>There are no messages.</h5>
+        <div class="text-center">
+            <br/>
+            <h5>There are no messages.</h5>
+            <br/>
+        </div>
     {% endif %}
 
-    <form class="row form-group" id="message-post" action="/">
-        <div class="input-group">
-            <textarea class="form-control" rows=1 id="message" placeholder="Type your message here."></textarea>
-            <input type="submit" value="Post">
+    <form class="form-group" id="message-post" method="POST" action="/">
+
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <p id="errors" class="text-center">
+                    {{ msg_form.text.errors.as_text }}
+                </p>
+            </div>
         </div>
+
+        <div class="row">
+            <div class="input-group">
+                {{ msg_form.text }}
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+
     </form>
 
+    
     <script>
 
-        $('#message').autoResize();
         $('#message').keyup(function (event) {
-            if (event.keyCode == 13 && event.shiftKey) {
+            /*if (event.keyCode == 13 && event.shiftKey) {
                 var content = this.value;
                 var caret = getCaret(this);
                 this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
                 event.stopPropagation();
                 
-            }else if(event.keyCode == 13)
+            } else */ if (event.keyCode == 13)
             {
                 $('#message-post').submit();
             }
         });
 
+        /*
         function getCaret(el) { 
             if (el.selectionStart) { 
                 return el.selectionStart; 
@@ -67,5 +96,7 @@
             }  
             return 0; 
         }
+        */
     </script>
+    
 {% endblock %}
