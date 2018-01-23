@@ -12,6 +12,7 @@ def index(request):
         if msg_form.is_valid():
             msg = msg_form.save()
             msg_form = NewMessageForm()
+            
     else:
         msg_form = NewMessageForm()
     
