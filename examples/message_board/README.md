@@ -73,6 +73,27 @@ SDS 2 (Django Message Board) Tutorial
 		   `<td>{{ m.text }}</td>` and add right below it
 		   `<td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>`
 	4. Show off functionality
-	
-2. Add temp user name text fields to main page (required), makemigrations, migrate, update index.html, (and for advanced update edit page)
-		
+
+2. Add user to message
+	1. Add required user foreign key field to Message
+		1. Add a new field to the Message in **board/models.py**
+		```python
+		user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+		```
+	2. Create a migration to update the database using
+		`python manage.py makemigrations`
+		1. Stop django server with CTRL+C, run migration with
+		`python manage.py migrate`
+		2. Start django server with
+		`python manage.py runserver`
+	3. Add user field to **board/models.py/NewMessageForm**
+		1. Add this field to the class definition
+		`user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)`
+		2. Add the field to the form's Meta class by changing the fields variable to:
+		`fields = ("user", "text",)`
+	4. Add user field to **board/templates/index.html**
+		1. In the input section of the form, above `{{ msg_form.text }}`
+			Add the following line `{{ msg_form.user }}`
+	5. Restart django server and refresh page to see changes
+
+
