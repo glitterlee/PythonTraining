@@ -4,7 +4,7 @@
 	1. In a directory you can keep track of (**sds_python** from SDS last week)
 		download the following file and unzip it:
 	`https://github.com/osu-cass/PythonTraining/archive/master.zip`
-	2. Enter the PythonTraining directory using **cd PythonTraining**
+	2. Enter the PythonTraining directory using **cd PythonTraining-master/PythonTraining-master/examples/message_board/**
 	3. VIRTUALENV INSTRUCTIONS HERE
 
 1. Run the default code and make sure everything works as expected
@@ -80,31 +80,35 @@
 		```
 	3. Create edit button for each message in **board/template/index.html**
 		1. Find the table where the messages are being added, specifically find the line
-		   `<td>{{ m.text }}</td>` and add right below it
+		   `<td>{{ m.text }}</td>` and right below it REPLACE the `<td/>` with
 		   `<td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>`
-	4. Show off functionality
+	4. View page at `http://localhost:8000/` and try out the edit button and the edit page!
 
 3. Add user to message
-	1. Add required user foreign key field to Message
-		1. Add a new field to the Message in **board/models.py**
+	1. Stop the django server with CTRL+C, as we are now making changes which will break it
+	2. Add required user foreign key field to Message
+		1. Import the django built in User model by adding `from django.contrib.auth.models import User` to the top of the models.py file
+		2. Add a new field to the Message in **board/models.py**
 		```python
 		user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 		```
-	2. Create a migration to update the database using
+	3. Create a migration to update the database using
 		`python manage.py makemigrations`
-		1. Stop django server with CTRL+C, run migration with
+		1. Run migration with
 		`python manage.py migrate`
 		2. Start django server with
-		`python manage.py runserver`
-	3. Add user field to **board/models.py/NewMessageForm**
-		1. Add this field to the class definition
+		`python manage.py runserver` It should start up with no issues
+	4. Add user field to **board/forms.py/NewMessageForm**
+		1. Import the django built in User model by adding
+		`from django.contrib.auth.models import User` to the top of the forms.py file
+		2. Add this field to the class definition
 		`user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)`
-		2. Add the field to the form's Meta class by changing the fields variable to:
+		3. Add the field to the form's Meta class by changing the fields variable to:
 		`fields = ("user", "text",)`
-	4. Add user field to **board/templates/index.html**
+	5. Add user field to **board/templates/index.html**
 		1. In the input section of the form, above `{{ msg_form.text }}`
 			Add the following line `{{ msg_form.user }}`
-	5. Restart django server and refresh page to see changes
+	6. Restart django server and refresh page to see changes
 
 4. Add two users for testing
 	1. Log in to admin site at `http://localhost:8000/admin`
@@ -124,8 +128,9 @@
 	1. Edit the file **board/templates/edit.html**
 	2. In the input section of the form, above `{{ msg_form.text }}`
 		Add the following line `{{ msg_form.user }}`
+	3. Restart django server and check out changes at `http://localhost:8000/`
 
 
 
 7. **Notes:**
-	1. To wipe the database and its migrations, run `python manage.py sqlflush`
+	1. To wipe the database, run `python manage.py flush`
