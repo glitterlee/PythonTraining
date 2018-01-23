@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ m.pub_date }}</td>
                             <td>{{ m.text }}</td>
-                            <td/>
+                            <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
