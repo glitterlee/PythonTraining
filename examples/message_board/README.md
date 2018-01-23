@@ -1,10 +1,20 @@
-SDS 2 (Django Message Board) Tutorial
+## SDS 2 (Django Message Board) Tutorial
 
-## Add git clone here
+0. Clone the base repository
+	1. In a directory you can keep track of (**sds_python** from SDS last week)
+		download the following file and unzip it:
+	`https://github.com/osu-cass/PythonTraining/archive/master.zip`
+	2. Enter the PythonTraining directory using **cd PythonTraining**
+	3. VIRTUALENV INSTRUCTIONS HERE
 
-## Add show basic functiality here `python manage.py migrate` and `python manage.py createsuperuser` (`python manage.py runserver`)
+1. Run the default code and make sure everything works as expected
+	1. Run this command to setup your database for initial use: `python manage.py migrate`
+	2. Run this command to create an admin user which we will use later. Don't forget the password!
+	`python manage.py createsuperuser`
+	3. Start the django app with `python manage.py runserver`
+	4. View the page at `http://localhost:8000/`.
 
-1. Create new page for editing a message.
+2. Create new page for editing a message.
     1. This begins with setting up a route in board/urls.py.
 	    1. Add `path(r'edit/<int:msg_id>/', views.edit_msg, name='edit_msg'),` to
 		   the `urlpatterns = [...]` list.
@@ -69,10 +79,53 @@ SDS 2 (Django Message Board) Tutorial
 		{% endblock %}
 		```
 	3. Create edit button for each message in **board/template/index.html**
-		1. Find the table where the messages are being added, sepcifally find the line
+		1. Find the table where the messages are being added, specifically find the line
 		   `<td>{{ m.text }}</td>` and add right below it
 		   `<td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>`
 	4. Show off functionality
-	
-2. Add temp user name text fields to main page (required), makemigrations, migrate, update index.html, (and for advanced update edit page)
-		
+
+3. Add user to message
+	1. Add required user foreign key field to Message
+		1. Add a new field to the Message in **board/models.py**
+		```python
+		user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+		```
+	2. Create a migration to update the database using
+		`python manage.py makemigrations`
+		1. Stop django server with CTRL+C, run migration with
+		`python manage.py migrate`
+		2. Start django server with
+		`python manage.py runserver`
+	3. Add user field to **board/models.py/NewMessageForm**
+		1. Add this field to the class definition
+		`user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)`
+		2. Add the field to the form's Meta class by changing the fields variable to:
+		`fields = ("user", "text",)`
+	4. Add user field to **board/templates/index.html**
+		1. In the input section of the form, above `{{ msg_form.text }}`
+			Add the following line `{{ msg_form.user }}`
+	5. Restart django server and refresh page to see changes
+
+4. Add two users for testing
+	1. Log in to admin site at `http://localhost:8000/admin`
+	2. Click on users, and then **add user** in the upper right
+	3. Under username, enter "user1" and a password, click "save and add another"
+		Enter "user2" and a password, click "save"
+	4. Navigate back to `http://localhost:8000`, or click "view site" in upper right corner of admin site
+	5. Notice drop down with three users: admin, user1, user2
+
+5. Add user column to index page
+	1. Edit the file **board/templates/index.html**
+	2. Above the Date column header (`<th>Date</th>`),
+		add the following `<th>User</th>`
+	3. In the table body, above `<td>{{ m.pub_date }}</td>`
+	add `<td>{{ m.user }}</td>`
+6. Add user field to edit page
+	1. Edit the file **board/templates/edit.html**
+	2. In the input section of the form, above `{{ msg_form.text }}`
+		Add the following line `{{ msg_form.user }}`
+
+
+
+7. **Notes:**
+	1. To wipe the database and its migrations, run `python manage.py sqlflush`
