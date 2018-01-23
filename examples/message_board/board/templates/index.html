@@ -11,23 +11,25 @@
     {% if messages|length > 0 %}
     <div class="row">
         <table class="table">
-                <thead>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in messages %}
                     <tr>
-                        <th class="w-25">Date</th>
-                        <th class="w-70">Message</th>
-                        <th class="w-5"><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
+                        <td>{{ m.user }}</td>
+                        <td>{{ m.pub_date }}</td>
+                        <td>{{ m.text }}</td>
+                        <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for m in messages %}
-                        <tr>
-                            <td>{{ m.pub_date }}</td>
-                            <td>{{ m.text }}</td>
-                            <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     {% else %}
         <div class="text-center">

@@ -96,4 +96,21 @@ SDS 2 (Django Message Board) Tutorial
 			Add the following line `{{ msg_form.user }}`
 	5. Restart django server and refresh page to see changes
 
+3. Add two users for testing
+	1. Log in to admin site at `http://localhost:8000/admin`
+	2. Click on users, and then **add user** in the upper right
+	3. Under username, enter "user1" and a password, click "save and add another"
+		Enter "user2" and a password, click "save"
+	4. Navigate back to `http://localhost:8000`, or click "view site" in upper right corner of admin site
+	5. Notice drop down with three users: admin, user1, user2
 
+4. Add user column to index page
+	1. Edit the file **board/templates/index.html**
+	2. Above the Date column header (`<th>Date</th>`),
+		add the following `<th>User</th>`
+	3. In the table body, above `<td>{{ m.pub_date }}</td>`
+	add `<td>{{ m.user }}</td>`
+5. Add user field to edit page
+	1. Edit the file **board/templates/edit.html**
+	2. In the input section of the form, above `{{ msg_form.text }}`
+		Add the following line `{{ msg_form.user }}`
