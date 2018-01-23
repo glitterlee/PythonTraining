@@ -26,3 +26,20 @@ def index(request):
 def clear_all(request):
     Message.objects.all().delete()
     return redirect(reverse('index'))
+
+def edit_msg(request, msg_id):
+    message = Message.objects.filter(id=msg_id).first()
+
+    if message is None:
+        return HttpResponseForbidden("This message doesn't exist.")
+    else:
+        msg_form = NewMessageForm(request.POST or None, instance=message)
+
+        if msg_form.is_valid():
+            msg_form.save()
+            return redirect(reverse('index'))
+        
+    return render(request, 'edit.html', {
+        'msg_form': msg_form,
+        'message': message,
+    })

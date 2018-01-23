@@ -14,10 +14,8 @@
                 <thead>
                     <tr>
                         <th class="w-25">Date</th>
-                        <th class="w-75">
-                            Message
-                            <a class="button float-right" href="{% url 'clear_all' %}">Clear All</a>
-                        </th>
+                        <th class="w-70">Message</th>
+                        <th class="w-5"><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +23,8 @@
                         <tr>
                             <td>{{ m.pub_date }}</td>
                             <td>{{ m.text }}</td>
+                            <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
+                            
                         </tr>
                     {% endfor %}
                 </tbody>
