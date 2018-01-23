@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='text-center'>
+    <br/>
+    <h4>Edit Message</h4>
+    <br/>
+</div>
+
+<form class="form-group" id="message-post" method="POST" action="{% url 'edit_msg' message.id %}">
+
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <p id="errors" class="text-center">
+                {{ msg_form.text.errors.as_text }}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-group">
+            {{ msg_form.text }}
+            <input type="submit" value="Submit">
+        </div>
+    </div>
+
+</form>
+    
+{% endblock %}
