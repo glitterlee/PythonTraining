@@ -12,7 +12,7 @@ def index(request):
         msg_form = NewMessageForm(request.POST)
         if msg_form.is_valid():
             msg = msg_form.save()
-            msg_form = NewMessageForm()
+            return redirect(reverse('index'))
 
     else:
         msg_form = NewMessageForm()
