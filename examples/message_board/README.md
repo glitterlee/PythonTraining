@@ -119,8 +119,8 @@
 		   ```
 	5. Add user field to **board/templates/index.html**
 		1. In the input section of the form, above `{{ msg_form.text }}` add `{{ msg_form.user }}`
-		2. In the block above the input section, below `{{ msg_form.text.error.as_text }}`
-		   add `{{ msg_form.user.error.as_text }}`
+		2. In the block above the input section, **change** `{{ msg_form.text.errors.as_text }}`
+		   to `{{ msg_form.errors.as_text }}`
 	6. Restart django server and refresh page to see changes
 
 6. Add two users for testing
@@ -141,8 +141,8 @@
 	1. Edit the file **board/templates/edit.html**
 	2. In the input section of the form, above `{{ msg_form.text }}`
 		add `{{ msg_form.user }}`
-	2. In the block above the input section, below `{{ msg_form.text.error.as_text }}`
-		   add `{{ msg_form.user.error.as_text }}`
+	2. In the block above the input section, **change** `{{ msg_form.text.errors.as_text }}`
+           to `{{ msg_form.errors.as_text }}`
 	3. Restart django server and check out changes at http://localhost:8000/
 
 
