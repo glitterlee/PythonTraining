@@ -1,20 +1,24 @@
 ## SDS 2 (Django Message Board) Tutorial
 
-0. Clone the base repository
-	1. In a directory you can keep track of (**sds_python** from SDS last week)
-		download the following file and unzip it:
-	`https://github.com/osu-cass/PythonTraining/archive/master.zip`
-	2. Enter the PythonTraining directory using **cd PythonTraining-master/PythonTraining-master/examples/message_board/**
-	3. VIRTUALENV INSTRUCTIONS HERE
+1. Activate the virtual environment
+    1. Change directories into the folder where you created the virtual environments from last week.
+    2. Activate the python 3 virtual environment with django installed with the command
+       `source <env_name>/bin/activate` if you are on linux and `<env_name\Scripts\activate` if you
+       are one windows, replacing *<env_name>* with the environment name.
+    
+2. Clone the base repository
+    1. In a directory you can keep track of (**sds_python** from last week)
+       clone the git repository, `git clone https://github.com/osu-cass/PythonTraining.git`.
+    2. Enter the PythonTraining directory using `cd PythonTraining-master/PythonTraining-master/examples/message_board/`
 
-1. Run the default code and make sure everything works as expected
-	1. Run this command to setup your database for initial use: `python manage.py migrate`
-	2. Run this command to create an admin user which we will use later. Don't forget the password!
-	`python manage.py createsuperuser`
-	3. Start the django app with `python manage.py runserver`
-	4. View the page at `http://localhost:8000/`.
+3. Run the default code and make sure everything works as expected
+    1. Run this command to setup your database for initial use: `python manage.py migrate`
+    2. Run this command to create an admin user which we will use later. Don't forget the password!
+       `python manage.py createsuperuser`
+    3. Start the django app with `python manage.py runserver`
+    4. View the page at `http://localhost:8000/`.
 
-2. Create new page for editing a message.
+4. Create new page for editing a message.
     1. This begins with setting up a route in board/urls.py.
 	    1. Add `path(r'edit/<int:msg_id>/', views.edit_msg, name='edit_msg'),` to
 		   the `urlpatterns = [...]` list.
@@ -84,7 +88,7 @@
 		   `<td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>`
 	4. View page at `http://localhost:8000/` and try out the edit button and the edit page!
 
-3. Add user to message
+5. Add user to message
 	1. Stop the django server with CTRL+C, as we are now making changes which will break it
 	2. Add required user foreign key field to Message
 		1. Import the django built in User model by adding `from django.contrib.auth.models import User` to the top of the models.py file
@@ -110,7 +114,7 @@
 			Add the following line `{{ msg_form.user }}`
 	6. Restart django server and refresh page to see changes
 
-4. Add two users for testing
+6. Add two users for testing
 	1. Log in to admin site at `http://localhost:8000/admin`
 	2. Click on users, and then **add user** in the upper right
 	3. Under username, enter "user1" and a password, click "save and add another"
@@ -118,19 +122,18 @@
 	4. Navigate back to `http://localhost:8000`, or click "view site" in upper right corner of admin site
 	5. Notice drop down with three users: admin, user1, user2
 
-5. Add user column to index page
+7. Add user column to index page
 	1. Edit the file **board/templates/index.html**
 	2. Above the Date column header (`<th>Date</th>`),
 		add the following `<th>User</th>`
 	3. In the table body, above `<td>{{ m.pub_date }}</td>`
 	add `<td>{{ m.user }}</td>`
-6. Add user field to edit page
+8. Add user field to edit page
 	1. Edit the file **board/templates/edit.html**
 	2. In the input section of the form, above `{{ msg_form.text }}`
 		Add the following line `{{ msg_form.user }}`
 	3. Restart django server and check out changes at `http://localhost:8000/`
 
 
-
-7. **Notes:**
-	1. To wipe the database, run `python manage.py flush`
+#### Notes
+* To wipe the database, run `python manage.py flush`
