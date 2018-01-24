@@ -1,4 +1,4 @@
-## SDS 2 (Django Message Board) Tutorial
+## Django Message Board: SDS Part 2
 
 1. Activate the virtual environment
     1. Change directories into the folder where you created the virtual environments from last week.
