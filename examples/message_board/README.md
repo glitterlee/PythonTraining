@@ -22,7 +22,7 @@
     1. This begins with setting up a route in board/urls.py.
 	    1. Add `path(r'edit/<int:msg_id>/', views.edit_msg, name='edit_msg'),` to
 		   the `urlpatterns = [...]` list.
-		2. This directs a route of the form **"http://localhost:8000/edit/10/"**
+		2. This directs a route of the form `http://localhost:8000/edit/10/`
 		   which will send the user to a edit page for the message with id 10.
 	2. Create view method (the C, Controller, in the MVC format) in board/views.py,
 	   called `edit_msg` as specified in the url route "`views.edit_msg`".
@@ -86,7 +86,7 @@
 		1. Find the table where the messages are being added, specifically find the line
 		   `<td>{{ m.text }}</td>` and right below it REPLACE the `<td/>` with
 		   `<td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>`
-	4. View page at `http://localhost:8000/` and try out the edit button and the edit page!
+	4. View page at http://localhost:8000/ and try out the edit button and the edit page!
 
 5. Add user to message
 	1. Stop the django server with CTRL+C, as we are now making changes which will break it
