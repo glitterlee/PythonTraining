@@ -9,7 +9,7 @@
 2. Clone the base repository
     1. In a directory you can keep track of (**sds_python** from last week)
        clone the git repository, `git clone https://github.com/osu-cass/PythonTraining.git`.
-    2. Enter the PythonTraining directory using `cd PythonTraining-master/PythonTraining-master/examples/message_board/`
+    2. Enter the PythonTraining directory using `cd PythonTraining/examples/message_board/`
 
 3. Run the default code and make sure everything works as expected
     1. Run this command to setup your database for initial use: `python manage.py migrate`
