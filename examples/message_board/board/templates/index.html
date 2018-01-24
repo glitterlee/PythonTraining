@@ -11,8 +11,18 @@
     {% if messages|length > 0 %}
     <div class="row">
         <table class="table">
-                <thead>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in messages %}
                     <tr>
+<<<<<<< HEAD
                         <th class="w-25">Date</th>
                         <th class="w-70">Message</th>
                         <th class="w-5"><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
@@ -29,6 +39,16 @@
                     {% endfor %}
                 </tbody>
             </table>
+=======
+                        <td>{{ m.user }}</td>
+                        <td>{{ m.pub_date }}</td>
+                        <td>{{ m.text }}</td>
+                        <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+>>>>>>> 7e581751903a72080cb3f1cb1633026a9aa5d6b7
     </div>
     {% else %}
         <div class="text-center">
@@ -51,7 +71,8 @@
         </div>
 
         <div class="row">
-            <div class="input-group">
+            <div class="input-group" id="message">
+                {{ msg_form.user }}
                 {{ msg_form.text }}
                 <input type="submit" value="Submit">
             </div>
@@ -59,44 +80,12 @@
 
     </form>
 
-    
     <script>
-
         $('#message').keyup(function (event) {
-            /*if (event.keyCode == 13 && event.shiftKey) {
-                var content = this.value;
-                var caret = getCaret(this);
-                this.value = content.substring(0,caret)+"\n"+content.substring(carent,content.length-1);
-                event.stopPropagation();
-                
-            } else */ if (event.keyCode == 13)
-            {
+            if (event.keyCode == 13) {
                 $('#message-post').submit();
             }
         });
-
-        /*
-        function getCaret(el) { 
-            if (el.selectionStart) { 
-                return el.selectionStart; 
-            } else if (document.selection) { 
-                el.focus(); 
-
-                var r = document.selection.createRange(); 
-                if (r == null) { 
-                return 0; 
-                } 
-
-                var re = el.createTextRange(), 
-                    rc = re.duplicate();
-                re.moveToBookmark(r.getBookmark()); 
-                rc.setEndPoint('EndToStart', re); 
-
-                return rc.text.length; 
-            }  
-            return 0; 
-        }
-        */
     </script>
     
 {% endblock %}

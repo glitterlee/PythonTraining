@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth.models import User
 from .models import Message
 
 
@@ -11,7 +11,7 @@ class NewMessageForm(forms.ModelForm):
             'placeholder':'Type your message here.',
         }),
     )
-
+    user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
     class Meta:
         model = Message
-        fields = ("text",)
+        fields = ("user", "text",)
