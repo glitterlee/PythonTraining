@@ -22,24 +22,6 @@
             <tbody>
                 {% for m in messages %}
                     <tr>
-<<<<<<< HEAD
-                        <th class="w-25">Date</th>
-                        <th class="w-70">Message</th>
-                        <th class="w-5"><a class="button float-right" href="{% url 'clear_all' %}">Clear All</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for m in messages %}
-                        <tr>
-                            <td>{{ m.pub_date }}</td>
-                            <td>{{ m.text }}</td>
-                            <td><a class="button float-right" href="{% url 'edit_msg' m.id %}">Edit</a></td>
-                            
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-=======
                         <td>{{ m.user }}</td>
                         <td>{{ m.pub_date }}</td>
                         <td>{{ m.text }}</td>
@@ -48,7 +30,6 @@
                 {% endfor %}
             </tbody>
         </table>
->>>>>>> 7e581751903a72080cb3f1cb1633026a9aa5d6b7
     </div>
     {% else %}
         <div class="text-center">
