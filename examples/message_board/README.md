@@ -139,7 +139,7 @@
 8. Add user field to edit page
 	1. Edit the file **board/templates/edit.html**
 	2. In the input section of the form, above `{{ msg_form.text }}`
-		Add the following line `{{ msg_form.user }}`
+		add `{{ msg_form.user }}`
 	3. Restart django server and check out changes at http://localhost:8000/
 
 
