@@ -1,3 +1,28 @@
+## Python Weirdness
+* For loops only are only done in the foreach form.
+  ```javascript
+  // Javascript
+  for (let i = 0; i < 10; i++) {
+      ...
+  }
+  ```
+  ```python
+  # Python
+  for i in range(10):
+      ...
+  # range(10) results in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  ```
+* In line list generation.
+  ```python
+  # Python
+  [ x / 2 for x in [0, 1, 2, 3, 4] ]
+  # Result: [0, 0.5, 1, 1.5, 2]
+  ```
+* Comments are pound signs `#`.
+* Blocks are defined by colons + whitspace.
+* **Whitespace is crucial**, tabs vs. spaces MATTER!
+* Dynamic types, like javascript.
+
 ## Django Message Board: SDS Part 2
 
 1. Activate the virtual environment
@@ -148,30 +173,3 @@
 
 #### Notes
 * To wipe the database, run `python manage.py flush`
-
-## Python Weirdness
-* For loops only are only done in the foreach form.
-  ```javascript
-  // Javascript
-  for (int i = 0; i < 10; i++) {
-      ...
-  }
-  ```
-  ```python
-  # Python
-  for i in range(10):
-      ...
-  # range(10) results in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  ```
-* In line list generation.
-  ```python
-  # Python
-  [ x / 2 for x in [0, 1, 2, 3, 4] ]
-  # Result: [0, 0.5, 1, 1.5, 2]
-  ```
-* Comments are pound signs `#`.
-* Blocks are defined by colons + whitspace.
-
-* **Whitespace is curicial**, tabs vs. spaces MATTER!
-
-* Dynamic types, like javascript.
